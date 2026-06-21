@@ -1,0 +1,258 @@
+<div class="page-wrapper">
+  <div class="container py-5">
+    <!-- ══════════════════════════════════════════════
+         ENCABEZADO DE PÁGINA
+         ══════════════════════════════════════════════ -->
+    <div class="page-header mb-4">
+      <div>
+        <h1 class="page-header__title">
+          <i class="bi bi-collection-play-fill me-2" aria-hidden="true"></i>
+          Cursos de Capacitación
+        </h1>
+        <p class="page-header__subtitle">Listado completo de cursos registrados en el sistema</p>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════
+         TARJETAS DE RESUMEN
+         ══════════════════════════════════════════════ -->
+    <div class="row g-3 mb-4">
+      <div class="col-6 col-md-3">
+        <div class="stat-card stat-card--total">
+          <i class="bi bi-stack stat-card__icon" aria-hidden="true"></i>
+          <span class="stat-card__value">{{ cursos.length }}</span>
+          <span class="stat-card__label">Total</span>
+        </div>
+      </div>
+
+      <div class="col-6 col-md-3">
+        <div class="stat-card stat-card--activos">
+          <i class="bi bi-check-circle-fill stat-card__icon" aria-hidden="true"></i>
+          <span class="stat-card__value">{{ totalActivos }}</span>
+          <span class="stat-card__label">Activos</span>
+        </div>
+      </div>
+
+      <div class="col-6 col-md-3">
+        <div class="stat-card stat-card--inactivos">
+          <i class="bi bi-x-circle-fill stat-card__icon" aria-hidden="true"></i>
+          <span class="stat-card__value">{{ totalInactivos }}</span>
+          <span class="stat-card__label">Inactivos</span>
+        </div>
+      </div>
+
+      <div class="col-6 col-md-3">
+        <div class="stat-card stat-card--categorias">
+          <i class="bi bi-tags-fill stat-card__icon" aria-hidden="true"></i>
+          <span class="stat-card__value">{{ categorias.length }}</span>
+          <span class="stat-card__label">Categorías</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════
+         PANEL DE FILTROS
+         ══════════════════════════════════════════════ -->
+    <div class="filter-panel mb-4">
+      <!-- Filtro por categoría -->
+      <div class="filter-panel__group">
+        <span class="filter-panel__label">
+          <i class="bi bi-tag-fill me-1" aria-hidden="true"></i>
+          Categoría
+        </span>
+        <div class="d-flex flex-wrap gap-2">
+          <button
+            class="btn btn-filter btn-sm"
+            [class.btn-filter--active]="categoriaSeleccionada === 'Todas'"
+            (click)="filtrarPorCategoria('Todas')"
+            id="filtro-todas"
+          >
+            Todas
+          </button>
+
+          <!-- @for — itera las categorías dinámicas desde el servicio -->
+          @for (cat of categorias; track cat) {
+            <button
+              class="btn btn-filter btn-sm"
+              [class.btn-filter--active]="categoriaSeleccionada === cat"
+              (click)="filtrarPorCategoria(cat)"
+              [id]="'filtro-' + cat"
+            >
+              {{ cat }}
+            </button>
+          }
+        </div>
+      </div>
+
+      <!-- Filtro por estado + reset -->
+      <div class="filter-panel__group filter-panel__group--right">
+        <span class="filter-panel__label">
+          <i class="bi bi-toggle-on me-1" aria-hidden="true"></i>
+          Estado
+        </span>
+        <div class="d-flex gap-2 flex-wrap">
+          <div class="btn-group" role="group" aria-label="Filtro de estado">
+            <button
+              type="button"
+              id="filtro-todos"
+              class="btn btn-sm btn-estado"
+              [class.btn-estado--all]="mostrarSolo === 'todos'"
+              [class.btn-outline-secondary]="mostrarSolo !== 'todos'"
+              (click)="filtrarPorEstado('todos')"
+            >
+              Todos
+            </button>
+            <button
+              type="button"
+              id="filtro-activos"
+              class="btn btn-sm btn-estado"
+              [class.btn-success]="mostrarSolo === 'activos'"
+              [class.btn-outline-secondary]="mostrarSolo !== 'activos'"
+              (click)="filtrarPorEstado('activos')"
+            >
+              Activos
+            </button>
+            <button
+              type="button"
+              id="filtro-inactivos"
+              class="btn btn-sm btn-estado"
+              [class.btn-danger]="mostrarSolo === 'inactivos'"
+              [class.btn-outline-secondary]="mostrarSolo !== 'inactivos'"
+              (click)="filtrarPorEstado('inactivos')"
+            >
+              Inactivos
+            </button>
+          </div>
+          <button
+            class="btn btn-sm btn-outline-secondary"
+            title="Limpiar filtros"
+            id="btn-limpiar"
+            (click)="limpiarFiltros()"
+          >
+            <i class="bi bi-arrow-counterclockwise"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contador de resultados -->
+    <p class="results-count mb-3">
+      <i class="bi bi-list-ul me-1"></i>
+      Mostrando <strong>{{ cursosFiltrados.length }}</strong> de
+      <strong>{{ cursos.length }}</strong> cursos
+    </p>
+
+    <!-- ══════════════════════════════════════════════
+         TABLA DE CURSOS
+         ══════════════════════════════════════════════ -->
+    <div class="table-card">
+      <div class="table-responsive">
+        <table class="table table-hover align-middle mb-0" id="tabla-cursos">
+          <thead class="table-head">
+            <tr>
+              <th scope="col" class="col-id">#</th>
+              <th scope="col">Nombre</th>
+              <th scope="col">Instructor</th>
+              <th scope="col">Categoría</th>
+              <th scope="col" class="text-center">Duración</th>
+              <th scope="col">Fecha de Inicio</th>
+              <th scope="col" class="text-center">Estado</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <!-- @if — mensaje cuando no hay resultados -->
+            @if (cursosFiltrados.length === 0) {
+              <tr class="empty-row">
+                <td colspan="7">
+                  <div class="empty-state">
+                    <i class="bi bi-search empty-state__icon" aria-hidden="true"></i>
+                    <p class="empty-state__text">
+                      No se encontraron cursos con los filtros seleccionados.
+                    </p>
+                    <button class="btn btn-sm btn-outline-primary" (click)="limpiarFiltros()">
+                      <i class="bi bi-arrow-counterclockwise me-1"></i>
+                      Limpiar filtros
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            }
+
+            <!-- @for — itera los cursos filtrados con track por ID -->
+            @for (curso of cursosFiltrados; track curso.id; let i = $index) {
+              <tr class="curso-row">
+                <!-- ID -->
+                <td class="col-id text-muted">{{ i + 1 }}</td>
+
+                <!-- Nombre — pipe: titlecase -->
+                <td>
+                  <div class="curso-nombre">
+                    <span class="curso-nombre__text">
+                      {{ curso.nombre | titlecase }}
+                    </span>
+                    <!-- <span class="curso-nombre__id text-muted">ID: {{ curso.id }}</span> -->
+                  </div>
+                </td>
+
+                <!-- Instructor -->
+                <td>
+                  <div class="instructor">
+                    <span class="instructor__avatar" aria-hidden="true">
+                      {{ curso.instructor.charAt(0) }}
+                    </span>
+                    <span class="instructor__nombre">{{ curso.instructor }}</span>
+                  </div>
+                </td>
+
+                <!-- Categoría — pipe: uppercase (texto), ngStyle (badge color) -->
+                <td>
+                  <span
+                    class="badge-cat"
+                    [ngStyle]="getCategoriaBadgeStyles(curso.categoria)"
+                    [attr.aria-label]="'Categoría: ' + curso.categoria"
+                  >
+                    {{ curso.categoria | uppercase }}
+                  </span>
+                </td>
+
+                <!-- Duración en horas -->
+                <td class="text-center">
+                  <span class="duracion">
+                    <i class="bi bi-clock me-1 text-muted" aria-hidden="true"></i>
+                    <strong>{{ curso.duracionHoras }}</strong>
+                    <span class="text-muted"> hs</span>
+                  </span>
+                </td>
+
+                <!-- Fecha de Inicio — pipe: date con formato dd/MM/yyyy -->
+                <td>
+                  <span class="fecha">
+                    <i class="bi bi-calendar3 me-1 text-muted" aria-hidden="true"></i>
+                    {{ curso.fechaInicio | date: 'dd/MM/yyyy' }}
+                  </span>
+                </td>
+
+                <!-- Estado — @if / @else para badge verde o rojo -->
+                <td class="text-center">
+                  @if (curso.activo) {
+                    <span class="badge-estado badge-estado--activo" role="status">
+                      <i class="bi bi-check-circle-fill me-1" aria-hidden="true"></i>
+                      Activo
+                    </span>
+                  } @else {
+                    <span class="badge-estado badge-estado--inactivo" role="status">
+                      <i class="bi bi-x-circle-fill me-1" aria-hidden="true"></i>
+                      Inactivo
+                    </span>
+                  }
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <!-- /tabla-card -->
+  </div>
+</div>

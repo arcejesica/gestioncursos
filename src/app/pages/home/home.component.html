@@ -1,0 +1,244 @@
+<!-- ══════════════════════════════════════════════════════════
+     HERO SECTION
+     ══════════════════════════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero__particles" aria-hidden="true">
+    <span class="particle particle--1"></span>
+    <span class="particle particle--2"></span>
+    <span class="particle particle--3"></span>
+    <span class="particle particle--4"></span>
+    <span class="particle particle--5"></span>
+  </div>
+
+  <div class="container text-center py-5 position-relative">
+
+    <!-- Icono animado -->
+    <div class="hero__icon mb-4" aria-hidden="true">
+      <i class="bi bi-mortarboard-fill"></i>
+    </div>
+
+    <!-- Título principal -->
+    <h1 class="hero__title mb-3">
+      Sistema de Gestión<br class="d-none d-md-block" />
+      de Cursos
+    </h1>
+
+    <!-- Bienvenida -->
+    <p class="hero__welcome mb-2">
+      ¡Bienvenido al panel de capacitación corporativa!
+    </p>
+
+    <!-- Descripción -->
+    <p class="hero__description mb-5 mx-auto">
+      Administra, organiza y consulta todos los cursos de capacitación de tu
+      organización desde un único lugar. Filtra por categoría, monitorea el
+      estado de cada curso y mantén tu equipo siempre actualizado.
+    </p>
+
+    <!-- CTAs -->
+    <div class="d-flex justify-content-center gap-3 flex-wrap">
+      <a
+        routerLink="/cursos"
+        class="btn btn-light btn-lg px-5 shadow hero__btn-primary"
+        id="btn-ver-cursos"
+      >
+        <i class="bi bi-collection-play me-2"></i>Ver Cursos
+      </a>
+      <a
+        href="#funcionalidades"
+        class="btn btn-outline-light btn-lg px-5 hero__btn-secondary"
+        id="btn-ver-funcionalidades"
+      >
+        <i class="bi bi-info-circle me-2"></i>¿Qué incluye?
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     STATS STRIP
+     ══════════════════════════════════════════════════════════ -->
+<section class="stats-strip">
+  <div class="container">
+    <div class="row g-0 justify-content-center">
+
+      <div class="col-6 col-md-3">
+        <div class="stats-strip__item">
+          <span class="stats-strip__value">{{ totalCursos }}</span>
+          <span class="stats-strip__label">
+            <i class="bi bi-collection me-1"></i>Cursos Totales
+          </span>
+        </div>
+      </div>
+
+      <div class="col-6 col-md-3">
+        <div class="stats-strip__item stats-strip__item--activos">
+          <span class="stats-strip__value">{{ totalActivos }}</span>
+          <span class="stats-strip__label">
+            <i class="bi bi-check-circle me-1"></i>Activos
+          </span>
+        </div>
+      </div>
+
+      <div class="col-6 col-md-3">
+        <div class="stats-strip__item stats-strip__item--inactivos">
+          <span class="stats-strip__value">{{ totalInactivos }}</span>
+          <span class="stats-strip__label">
+            <i class="bi bi-x-circle me-1"></i>Inactivos
+          </span>
+        </div>
+      </div>
+
+      <div class="col-6 col-md-3">
+        <div class="stats-strip__item stats-strip__item--categorias">
+          <span class="stats-strip__value">{{ totalCategorias }}</span>
+          <span class="stats-strip__label">
+            <i class="bi bi-tags me-1"></i>Categorías
+          </span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     DESCRIPCIÓN DEL SISTEMA
+     ══════════════════════════════════════════════════════════ -->
+<section class="py-5 bg-light">
+  <div class="container">
+    <div class="row align-items-center g-4 g-lg-5">
+
+      <!-- Texto -->
+      <div class="col-lg-6">
+        <span class="section-tag mb-3">Sobre el sistema</span>
+        <h2 class="section-title mb-4">
+          Una plataforma pensada para la gestión educativa corporativa
+        </h2>
+        <p class="text-muted mb-4">
+          El <strong>Sistema de Gestión de Cursos</strong> centraliza toda la
+          información de la oferta formativa de tu organización. Permite
+          mantener un registro actualizado de instructores, categorías,
+          duraciones y fechas de inicio de cada curso.
+        </p>
+        <ul class="feature-list">
+          <li>
+            <i class="bi bi-check2-circle text-primary"></i>
+            Consulta instantánea del catálogo completo de cursos
+          </li>
+          <li>
+            <i class="bi bi-check2-circle text-primary"></i>
+            Filtros por categoría y estado activo / inactivo
+          </li>
+          <li>
+            <i class="bi bi-check2-circle text-primary"></i>
+            Información clara de instructores y duración
+          </li>
+          <li>
+            <i class="bi bi-check2-circle text-primary"></i>
+            Arquitectura preparada para integración con backends
+          </li>
+        </ul>
+        <a routerLink="/cursos" class="btn btn-primary btn-lg mt-2" id="btn-explorar">
+          <i class="bi bi-arrow-right-circle me-2"></i>Explorar catálogo
+        </a>
+      </div>
+
+      <!-- Tarjeta destacada -->
+      <div class="col-lg-6">
+        <div class="info-card shadow">
+          <div class="info-card__header">
+            <i class="bi bi-clipboard2-data-fill me-2"></i>
+            Resumen del sistema
+          </div>
+          <div class="info-card__body">
+            <div class="info-card__row">
+              <span class="info-card__key">
+                <i class="bi bi-stack me-2 text-primary"></i>Framework
+              </span>
+              <span class="info-card__value">Angular 20 (Standalone)</span>
+            </div>
+            <div class="info-card__row">
+              <span class="info-card__key">
+                <i class="bi bi-palette me-2 text-primary"></i>Estilos
+              </span>
+              <span class="info-card__value">Bootstrap 5 + CSS propio</span>
+            </div>
+            <div class="info-card__row">
+              <span class="info-card__key">
+                <i class="bi bi-signpost-split me-2 text-primary"></i>Routing
+              </span>
+              <span class="info-card__value">Lazy loading por ruta</span>
+            </div>
+            <div class="info-card__row">
+              <span class="info-card__key">
+                <i class="bi bi-gear me-2 text-primary"></i>Servicio
+              </span>
+              <span class="info-card__value">CursoService (providedIn root)</span>
+            </div>
+            <div class="info-card__row">
+              <span class="info-card__key">
+                <i class="bi bi-code-square me-2 text-primary"></i>Lenguaje
+              </span>
+              <span class="info-card__value">TypeScript — tipado fuerte</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     FUNCIONALIDADES
+     ══════════════════════════════════════════════════════════ -->
+<section id="funcionalidades" class="py-5">
+  <div class="container">
+
+    <div class="text-center mb-5">
+      <span class="section-tag mb-3">Capacidades</span>
+      <h2 class="section-title">Funcionalidades principales</h2>
+      <p class="text-muted mx-auto" style="max-width: 560px;">
+        Todo lo que necesitas para administrar la formación de tu equipo en un solo lugar.
+      </p>
+    </div>
+
+    <div class="row g-4">
+      @for (fn of funcionalidades; track fn.titulo) {
+        <div class="col-sm-6 col-lg-4">
+          <div class="func-card func-card--{{ fn.color }}">
+            <div class="func-card__icon">
+              <i class="bi {{ fn.icono }}"></i>
+            </div>
+            <h5 class="func-card__title">{{ fn.titulo }}</h5>
+            <p class="func-card__desc">{{ fn.descripcion }}</p>
+          </div>
+        </div>
+      }
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     CALL TO ACTION FINAL
+     ══════════════════════════════════════════════════════════ -->
+<section class="cta-section">
+  <div class="container text-center py-5">
+    <h2 class="cta-section__title mb-3">
+      ¿Listo para gestionar tus cursos?
+    </h2>
+    <p class="cta-section__sub mb-4">
+      Accede al listado completo y empieza a administrar el catálogo ahora.
+    </p>
+    <a
+      routerLink="/cursos"
+      class="btn btn-light btn-lg px-5 shadow-sm"
+      id="btn-cta-final"
+    >
+      <i class="bi bi-collection-play me-2"></i>Ir al listado de cursos
+    </a>
+  </div>
+</section>

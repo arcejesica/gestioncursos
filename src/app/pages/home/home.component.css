@@ -1,0 +1,373 @@
+/* ================================================================
+   HomeComponent Styles
+   ================================================================ */
+
+/* ── HERO ──────────────────────────────────────────────────────── */
+.hero {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #0d6efd 0%, #0050c8 55%, #003a94 100%);
+  padding: 5rem 0 4rem;
+}
+
+/* Partículas decorativas */
+.hero__particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.15;
+  background: #fff;
+  animation: drift 8s ease-in-out infinite;
+}
+
+.particle--1 { width: 80px;  height: 80px;  top: 10%;  left: 8%;  animation-delay: 0s;   animation-duration: 7s; }
+.particle--2 { width: 50px;  height: 50px;  top: 60%;  left: 15%; animation-delay: 1.5s; animation-duration: 9s; }
+.particle--3 { width: 120px; height: 120px; top: 20%;  right: 10%; animation-delay: 0.8s; animation-duration: 11s; }
+.particle--4 { width: 40px;  height: 40px;  bottom: 20%; right: 20%; animation-delay: 2s;  animation-duration: 8s; }
+.particle--5 { width: 70px;  height: 70px;  bottom: 10%; left: 40%; animation-delay: 3s;  animation-duration: 10s; }
+
+@keyframes drift {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50%       { transform: translateY(-20px) scale(1.05); }
+}
+
+/* Icono principal */
+.hero__icon {
+  font-size: 4.5rem;
+  color: rgba(255, 255, 255, 0.92);
+  animation: float 3.5s ease-in-out infinite;
+  display: inline-block;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-12px); }
+}
+
+/* Título */
+.hero__title {
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+}
+
+/* Bienvenida */
+.hero__welcome {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* Descripción */
+.hero__description {
+  max-width: 600px;
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.7;
+}
+
+/* Botones del hero */
+.hero__btn-primary {
+  font-weight: 600;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.hero__btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2) !important;
+}
+
+.hero__btn-secondary {
+  font-weight: 500;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.hero__btn-secondary:hover {
+  background-color: rgba(255, 255, 255, 0.12);
+  transform: translateY(-2px);
+}
+
+/* ── STATS STRIP ────────────────────────────────────────────────── */
+.stats-strip {
+  background: #fff;
+  border-bottom: 1px solid #e9ecef;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+}
+
+.stats-strip__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.75rem 1rem;
+  border-right: 1px solid #f1f5f9;
+  transition: background-color 0.2s ease;
+}
+
+.stats-strip__item:last-child { border-right: none; }
+
+.stats-strip__item:hover { background-color: #f8faff; }
+
+.stats-strip__value {
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: #0d6efd;
+  line-height: 1;
+}
+
+.stats-strip__item--activos   .stats-strip__value { color: #198754; }
+.stats-strip__item--inactivos .stats-strip__value { color: #dc3545; }
+.stats-strip__item--categorias .stats-strip__value { color: #6f42c1; }
+
+.stats-strip__label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: #6c757d;
+  margin-top: 0.35rem;
+}
+
+/* ── SECCIÓN DESCRIPCIÓN ────────────────────────────────────────── */
+.section-tag {
+  display: inline-block;
+  background: #dbeafe;
+  color: #1d4ed8;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 0.3em 1em;
+  border-radius: 999px;
+  margin-bottom: 0.75rem;
+}
+
+.section-title {
+  font-size: clamp(1.5rem, 3vw, 2.1rem);
+  font-weight: 800;
+  color: #1e293b;
+  line-height: 1.25;
+}
+
+/* Lista de características */
+.feature-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.feature-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  color: #475569;
+  font-size: 0.95rem;
+}
+
+.feature-list i {
+  font-size: 1.15rem;
+  margin-top: 1px;
+  flex-shrink: 0;
+}
+
+/* Info Card */
+.info-card {
+  border-radius: 16px;
+  overflow: hidden;
+  background: #fff;
+}
+
+.info-card__header {
+  background: linear-gradient(90deg, #0d6efd, #0050c8);
+  color: #fff;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 1.1rem 1.5rem;
+  letter-spacing: 0.02em;
+}
+
+.info-card__body {
+  padding: 0.5rem 0;
+}
+
+.info-card__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.9rem 1.5rem;
+  border-bottom: 1px solid #f1f5f9;
+  transition: background-color 0.15s ease;
+}
+
+.info-card__row:last-child { border-bottom: none; }
+
+.info-card__row:hover { background-color: #f8faff; }
+
+.info-card__key {
+  font-size: 0.88rem;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.info-card__value {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+/* ── FUNCIONALIDADES ────────────────────────────────────────────── */
+.func-card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 2rem 1.5rem;
+  height: 100%;
+  border-top: 4px solid transparent;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.func-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
+}
+
+/* Colores por variante */
+.func-card--primary   { border-top-color: #0d6efd; }
+.func-card--success   { border-top-color: #198754; }
+.func-card--warning   { border-top-color: #ffc107; }
+.func-card--info      { border-top-color: #0dcaf0; }
+.func-card--danger    { border-top-color: #dc3545; }
+.func-card--secondary { border-top-color: #6c757d; }
+
+.func-card__icon {
+  font-size: 2.2rem;
+  margin-bottom: 1rem;
+}
+
+.func-card--primary   .func-card__icon { color: #0d6efd; }
+.func-card--success   .func-card__icon { color: #198754; }
+.func-card--warning   .func-card__icon { color: #d97706; }
+.func-card--info      .func-card__icon { color: #0ea5e9; }
+.func-card--danger    .func-card__icon { color: #dc3545; }
+.func-card--secondary .func-card__icon { color: #6c757d; }
+
+.func-card__title {
+  font-weight: 700;
+  font-size: 1rem;
+  color: #1e293b;
+  margin-bottom: 0.5rem;
+}
+
+.func-card__desc {
+  font-size: 0.88rem;
+  color: #64748b;
+  line-height: 1.65;
+  margin: 0;
+}
+
+/* ── CTA FINAL ──────────────────────────────────────────────────── */
+.cta-section {
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+}
+
+.cta-section__title {
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 800;
+  color: #fff;
+}
+
+.cta-section__sub {
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 1rem;
+}
+
+/* ── RESPONSIVE DESIGN (Media Queries) ────────────────────────── */
+
+/* Tablets y Móviles (menores a 992px) */
+@media (max-width: 991px) {
+  .hero {
+    padding: 3.5rem 0 2.5rem;
+  }
+
+  .hero__description {
+    font-size: 0.95rem;
+    margin-bottom: 2.5rem !important;
+  }
+
+  .func-card {
+    padding: 1.5rem 1.25rem;
+  }
+}
+
+/* Móviles (hasta 767px) */
+@media (max-width: 767px) {
+  .hero {
+    padding: 3rem 0 2rem;
+  }
+
+  /* Reducir ruido visual de partículas en pantallas chicas */
+  .particle {
+    opacity: 0.08;
+  }
+  .particle--3, .particle--5 {
+    display: none;
+  }
+
+  .hero__icon {
+    font-size: 3.5rem;
+    margin-bottom: 1rem !important;
+  }
+
+  /* Grid 2x2 para las estadísticas */
+  .stats-strip__item {
+    border-right: none;
+    border-bottom: 1px solid #f1f5f9;
+    padding: 1.25rem 0.5rem;
+  }
+
+  /* Aplicamos bordes estilo 2x2 */
+  .col-6:nth-child(odd) .stats-strip__item {
+    border-right: 1px solid #f1f5f9;
+  }
+
+  /* Ocultar borde inferior en la última fila del grid 2x2 */
+  .col-6:nth-child(3) .stats-strip__item,
+  .col-6:nth-child(4) .stats-strip__item {
+    border-bottom: none;
+  }
+
+  .stats-strip__value {
+    font-size: 1.8rem;
+  }
+
+  .stats-strip__label {
+    font-size: 0.72rem;
+  }
+}
+
+/* Teléfonos extra pequeños (hasta 479px) */
+@media (max-width: 479px) {
+  /* Apilar la información en la Info Card */
+  .info-card__row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.35rem;
+    padding: 0.75rem 1.25rem;
+  }
+
+  .info-card__value {
+    font-size: 0.85rem;
+    text-align: left;
+  }
+}
+

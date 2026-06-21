@@ -1,0 +1,107 @@
+/* ================================================================
+   NavbarComponent Styles
+   ================================================================ */
+
+.navbar-custom {
+  background: linear-gradient(90deg, #0d47a1 0%, #1565c0 50%, #0d6efd 100%);
+  padding: 0.6rem 0;
+}
+
+/* ── Brand ──────────────────────────────────────────────────────── */
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+}
+
+.navbar-brand__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.18);
+  font-size: 1.3rem;
+  color: #fff;
+  flex-shrink: 0;
+  transition: background-color 0.2s ease;
+}
+
+.navbar-brand:hover .navbar-brand__icon {
+  background: rgba(255, 255, 255, 0.28);
+}
+
+.navbar-brand__text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
+
+.navbar-brand__title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.01em;
+}
+
+.navbar-brand__sub {
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.65);
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  margin-top: 2px;
+}
+
+/* ── Nav links ──────────────────────────────────────────────────── */
+.nav-link-custom {
+  color: rgba(255, 255, 255, 0.85) !important;
+  font-weight: 500;
+  font-size: 0.92rem;
+  padding: 0.45rem 0.9rem !important;
+  border-radius: 8px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.nav-link-custom:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  color: #fff !important;
+}
+
+.nav-link-custom.active {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #fff !important;
+  font-weight: 700;
+}
+
+/* ── Toggler ────────────────────────────────────────────────────── */
+.navbar-toggler:focus {
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
+}
+
+/* ── Responsive Navbar (Móviles y Tablets) ─────────────────────── */
+@media (max-width: 991px) {
+  .navbar-collapse {
+    background: linear-gradient(135deg, #0a367c 0%, #0d47a1 100%);
+    padding: 1rem;
+    border-radius: 10px;
+    margin-top: 0.75rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .navbar-nav {
+    align-items: stretch !important;
+    gap: 0.5rem !important;
+    width: 100%;
+  }
+
+  .nav-link-custom {
+    padding: 0.75rem 1rem !important; /* Mayor área de contacto para pantallas táctiles */
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+}
+
